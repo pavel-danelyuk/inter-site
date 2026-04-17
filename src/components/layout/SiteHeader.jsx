@@ -39,7 +39,7 @@ export default function SiteHeader() {
             <Image
               src="/images/logo.png"
               alt="Meliora Maison"
-              width={48}
+              width={45}
               height={48}
               className={`object-contain transition-all duration-300 ${
                 isShrunk ? "h-8" : "h-10"
