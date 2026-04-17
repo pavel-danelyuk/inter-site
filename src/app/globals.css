@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Libre Baskerville", serif;
+
+  --text-10xl: 10rem;
+  --text-10xl--line-height: 0.95;
+
+  --text-11xl: 11rem;
+  --text-11xl--line-height: 0.9;
+
+  --text-12xl: 12rem;
+  --text-12xl--line-height: 0.9;
+}
+
 :root {
   --background: #f8f6f3;
   --surface: #fefefe;
@@ -28,7 +42,6 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--text);
-  font-family: var(--font-body), serif;
 }
 
 a {
@@ -64,21 +77,6 @@ h1,
 h2,
 h3 {
   margin-bottom: 0.5em;
-}
-
-h1 {
-  font-size: 2.5rem;
-  line-height: 1.2;
-}
-
-h2 {
-  font-size: 2rem;
-  line-height: 1.25;
-}
-
-h3 {
-  font-size: 1.5rem;
-  line-height: 1.3;
 }
 
 ::selection {

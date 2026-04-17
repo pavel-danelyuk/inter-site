@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${playfair.variable} ${libre.variable}`}>
-        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-(family-name:--font-body)">
           <SiteHeader />
           <main>{children}</main>
           <SiteFooter />
