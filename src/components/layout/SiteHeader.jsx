@@ -1,28 +1,53 @@
 import Link from "next/link";
-import PageContainer from "@/components/layout/PageContainer";
-import { navigation, siteConfig } from "@/data/site";
-import Button from "@/components/ui/Button";
+import Image from "next/image";
+import PageContainer from "./PageContainer";
 
 export default function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[rgba(246,241,235,0.92)] backdrop-blur">
-      <PageContainer className="flex h-20 items-center justify-between gap-6">
-        <Link href="/" className="min-w-fit">
-          <div className="text-lg font-semibold tracking-[0.18em] uppercase">{siteConfig.name}</div>
-          <div className="text-xs tracking-[0.2em] text-[var(--muted)]">Interior Design Studio</div>
+    <header className="bg-[var(--primary)] text-white">
+      <PageContainer className="flex items-center justify-between py-4">
+        
+        {/* Logo */}
+        <Link href="/" className="flex items-center">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/images/logo.png"
+              alt="Meliora Maison"
+              width={48}
+              height={48}
+              className="h-10 w-auto object-contain"
+              priority
+            />
+              <span className="text-sm tracking-wide">
+                Meliora Maison
+              </span>
+          </div>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
-          {navigation.map((item) => (
-            <Link key={item.href} href={item.href} className="text-sm text-[var(--muted)] transition hover:text-[var(--foreground)]">
-              {item.label}
-            </Link>
-          ))}
+        {/* Navigation */}
+        <nav className="hidden md:flex items-center gap-8 text-sm">
+          <Link href="/services" className="hover:opacity-70">
+            Services
+          </Link>
+          <Link href="/portfolio" className="hover:opacity-70">
+            Portfolio
+          </Link>
+          <Link href="/about" className="hover:opacity-70">
+            About
+          </Link>
+          <Link href="/contact" className="hover:opacity-70">
+            Contact
+          </Link>
         </nav>
 
-        <Button href="/contact" size="sm">
+        {/* CTA */}
+        <Link
+          href="/contact"
+          className="rounded-md bg-black px-4 py-2 text-sm text-white hover:bg-black/80 transition"
+        >
           Book a Consultation
-        </Button>
+        </Link>
+
       </PageContainer>
     </header>
   );

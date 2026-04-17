@@ -1,13 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f1eb;
-  --foreground: #201a17;
-  --muted: #6f655f;
-  --card: #fffaf6;
-  --line: rgba(32, 26, 23, 0.1);
-  --accent: #c8b29d;
-  --accent-strong: #9d7d62;
+  --background: #f8f6f3;
+  --surface: #fefefe;
+  --surface-soft: #f5f1ec;
+
+  --foreground: #241c18;
+  --text: #4f433c;
+  --muted: #7a6d65;
+
+  --line: #ddd4cb;
+
+  --primary: #1a1411;
+  --primary-hover: #2a211d;
+  --accent: #e8ddd2;
 }
 
 * {
@@ -21,8 +27,8 @@ html {
 body {
   margin: 0;
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  font-family: var(--font-body), serif;
 }
 
 a {
@@ -40,6 +46,39 @@ textarea,
 select,
 button {
   font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), serif;
+  color: var(--foreground);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 1.3;
 }
 
 ::selection {
