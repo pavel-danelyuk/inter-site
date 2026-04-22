@@ -55,6 +55,7 @@ export default function ContactForm() {
 
     try {
       setIsSubmitting(true);
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -63,8 +64,9 @@ export default function ContactForm() {
         body: JSON.stringify(form),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const data = await response.json();
         setErrors(data.errors || { form: "Something went wrong." });
         return;
       }
@@ -72,6 +74,7 @@ export default function ContactForm() {
       setForm(initialForm);
       router.push("/thank-you");
     } catch (error) {
+      console.error("Contact form error:", error);
       setErrors({ form: "Unable to submit right now. Please try again." });
     } finally {
       setIsSubmitting(false);
@@ -79,17 +82,60 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-[2rem] border border-[var(--line)] bg-white p-6 shadow-sm sm:p-8">
+    <form
+      onSubmit={handleSubmit}
+      className="rounded-[2rem] border border-[var(--line)] bg-white p-6 shadow-sm sm:p-8"
+    >
       <div className="grid gap-5 sm:grid-cols-2">
-        <Input label="Full name" name="name" value={form.name} onChange={handleChange} error={errors.name} />
-        <Input label="Email" name="email" type="email" value={form.email} onChange={handleChange} error={errors.email} />
-        <Input label="Phone" name="phone" value={form.phone} onChange={handleChange} error={errors.phone} />
-        <Input label="Timeline" name="timeline" placeholder="Example: next 2 months" value={form.timeline} onChange={handleChange} error={errors.timeline} />
+        <Input
+          label="Full name"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          error={errors.name}
+        />
+        <Input
+          label="Email"
+          name="email"
+          type="email"
+          value={form.email}
+          onChange={handleChange}
+          error={errors.email}
+        />
+        <Input
+          label="Phone"
+          name="phone"
+          value={form.phone}
+          onChange={handleChange}
+          error={errors.phone}
+        />
+        <Input
+          label="Timeline"
+          name="timeline"
+          placeholder="Example: next 2 months"
+          value={form.timeline}
+          onChange={handleChange}
+          error={errors.timeline}
+        />
       </div>
 
       <div className="mt-5 grid gap-5 sm:grid-cols-2">
-        <Select label="Service" name="service" value={form.service} onChange={handleChange} options={serviceOptions} error={errors.service} />
-        <Select label="Budget" name="budget" value={form.budget} onChange={handleChange} options={budgetOptions} error={errors.budget} />
+        <Select
+          label="Service"
+          name="service"
+          value={form.service}
+          onChange={handleChange}
+          options={serviceOptions}
+          error={errors.service}
+        />
+        <Select
+          label="Budget"
+          name="budget"
+          value={form.budget}
+          onChange={handleChange}
+          options={budgetOptions}
+          error={errors.budget}
+        />
       </div>
 
       <div className="mt-5">
@@ -103,10 +149,16 @@ export default function ContactForm() {
         />
       </div>
 
-      {errors.form ? <p className="mt-4 text-sm text-red-600">{errors.form}</p> : null}
+      {errors.form ? (
+        <p className="mt-4 text-sm text-red-600">{errors.form}</p>
+      ) : null}
 
       <div className="mt-6">
-        <Button type="submit" disabled={isSubmitting} className="disabled:cursor-not-allowed disabled:opacity-60">
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="disabled:cursor-not-allowed disabled:opacity-60"
+        >
           {isSubmitting ? "Sending..." : "Send Inquiry"}
         </Button>
       </div>

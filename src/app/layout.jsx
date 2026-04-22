@@ -26,7 +26,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body className={`${playfair.variable} ${libre.variable}`}>
         <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-(family-name:--font-body)">
           <SiteHeader />
