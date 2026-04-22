@@ -3,25 +3,35 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import PageContainer from "./PageContainer";
+import Button from "@/components/ui/Button";
 
 export default function SiteHeader() {
-  const [showBrandName, setShowBrandName] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
+  const [showBrandName, setShowBrandName] = useState(true);
   const [isShrunk, setIsShrunk] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
 
-      setShowBrandName(scrollY > 200);
       setIsShrunk(scrollY > 50);
+
+      if (isHomePage) {
+        setShowBrandName(scrollY > 200);
+      } else {
+        setShowBrandName(true);
+      }
     };
 
     handleScroll();
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   return (
     <header
@@ -49,7 +59,7 @@ export default function SiteHeader() {
             />
 
             <span
-              className={`font-(font-family:--font-heading) tracking-[0.06em] transition-all duration-500 ${
+              className={`font-(family-name:--font-heading) tracking-[0.06em] transition-all duration-500 ${
                 showBrandName
                   ? "translate-y-0 opacity-100"
                   : "-translate-y-1 opacity-0"
@@ -75,14 +85,13 @@ export default function SiteHeader() {
           </Link>
         </nav>
 
-        <Link
+        <Button
           href="/contact"
-          className={`rounded-md border border-white/15 bg-white text-[var(--primary)] transition-all duration-300 hover:bg-white/90 ${
-            isShrunk ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm"
-          }`}
+          variant="light"
+          size={isShrunk ? "sm" : "md"}
         >
           Book a Consultation
-        </Link>
+        </Button>
       </PageContainer>
     </header>
   );

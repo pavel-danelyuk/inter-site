@@ -11,10 +11,8 @@ export default function CTAInquiry() {
             Whether you need a focused consultation or a full design plan, the first step starts here.
           </h2>
           <div className="mt-8 flex flex-wrap gap-4">
-            <Button href="/contact">Send an Inquiry</Button>
-            <Button href="/services" variant="outline">
-              Review Services
-            </Button>
+            <Button href="/contact" variant="dark">Send an Inquiry</Button>
+            <Button href="/services" variant="light">Review Services</Button>
           </div>
         </div>
       </PageContainer>

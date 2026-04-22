@@ -1,5 +1,5 @@
-import Link from "next/link";
 import PageContainer from "@/components/layout/PageContainer";
+import Button from "@/components/ui/Button";
 
 export default function Hero() {
   return (
@@ -11,7 +11,6 @@ export default function Hero() {
         backgroundPosition: "center",
       }}
     >
-      {/* Image overlay */}
       <div className="absolute inset-0 bg-black/30" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/20 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
@@ -32,19 +31,13 @@ export default function Hero() {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="/portfolio"
-              className="inline-flex items-center rounded-md bg-white px-6 py-3 text-sm font-medium text-[var(--primary)] transition hover:bg-white/90"
-            >
+            <Button href="/portfolio" variant="light" size="md">
               Explore Our Work
-            </Link>
+            </Button>
 
-            <Link
-              href="/contact"
-              className="inline-flex items-center rounded-md border border-white/50 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
-            >
+            <Button href="/contact" variant="dark" size="md">
               Book a Consultation
-            </Link>
+            </Button>
           </div>
         </div>
       </PageContainer>
